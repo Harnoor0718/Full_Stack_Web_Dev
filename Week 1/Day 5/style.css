@@ -1,6 +1,15 @@
 .grid-container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    
+    gap: 16px;  
+}
+
+.page-layout{
+    display: grid;
+    grid-template-areas: 
+        "header header"
+        "sidebar main"
+        "footer footer";
+    grid-template-columns: 200px 1fr;
+    min-height: 100vh;
 }
