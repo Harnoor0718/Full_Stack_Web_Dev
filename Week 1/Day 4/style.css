@@ -1,0 +1,17 @@
+.navbar{
+    display : flex;
+    justify-content : space-around;
+    align-items : center;
+    padding : 20px 40px;
+}
+
+.nav-links{
+    display : flex;
+    gap : 16px;
+}
+
+.cards-row{
+    display : flex;
+    gap : 16px;
+    padding : 20px;
+}
