@@ -2,7 +2,47 @@
 <html>
     <head>
         <title>Pricing Table</title>
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .cards{
+                display: flex;
+                justify-content: center;
+                gap: 50px;
+                margin-top: 100px;
+                align-items: center;
+            }
+
+            .card{
+                border: 1px solid #ccc;
+                width: 300px;
+                text-align: center;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+                min-height: 320px;
+            }
+
+            .table{
+                width: 80%;
+                border-collapse: collapse;
+                margin: 40px auto 0;
+            }
+
+            .card button{
+                padding : 10px 20px;
+                border : none;
+                background-color : #007BFF;
+                border-radius : 5px;
+                color : white;
+                cursor : pointer;
+            }
+
+            .table th, .table td{
+                border: 1px solid #ef5f5f;
+                padding: 10px;
+                text-align: center;
+            }
+
+        </style>
     </head>
 
     <body>
@@ -42,6 +82,52 @@
                 <button> Sign Up </button>
             </div>
         </div>
+
+        
+
+        <table class = "table">
+            <thead>
+                <tr>
+                    <th> Features </th>
+                    <th> Basic </th>
+                    <th> Pro </th>
+                    <th> Premium </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> Feature 1 </td>
+                    <td> ✓ </td>
+                    <td> ✓ </td>
+                    <td> ✓ </td>
+                </tr>
+                <tr>
+                    <td> Feature 2 </td>
+                    <td> ✓ </td>
+                    <td> ✓ </td>
+                    <td> ✓ </td>
+                </tr>
+                <tr>
+                    <td> Feature 3 </td>
+                    <td> ✓ </td>
+                    <td> ✓ </td>
+                    <td> ✓ </td>
+                </tr>
+                <tr>
+                    <td> Feature 4 </td>
+                    <td> ✗ </td>
+                    <td> ✓ </td>
+                    <td> ✓ </td>
+                </tr>
+                <tr>
+                    <td> Feature 5 </td>
+                    <td> ✗ </td>
+                    <td> ✗ </td>
+                    <td> ✓ </td>
+                </tr>
+            </tbody>
+        </table>
+
     </body>
 
     </html>
