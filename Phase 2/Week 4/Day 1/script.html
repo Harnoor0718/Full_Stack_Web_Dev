@@ -3,35 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>DOM Basics</title>
+        <title>DOM - Creating/Removing Elements & Event Listeners</title>
     </head>
     <body>
-        <p>Small HTML Page with a heading and button</p>
-
-        <h1 id="title">Hello Harnoor</h1>
-        <button id="button">Click Me</button>
-
+        
     </body>
     <script>
-        const title = document.getElementById("title");
-        const button = document.getElementById("button");
-
-        // Change the Heading text when button is clicked with textContent property
-        // button.addEventListener("click", function(){
-        //     title.textContent = "Text Changed";
-        // });
-
-        // Change the Heading text when button is clicked with innerHTML property
-         button.addEventListener("click", function(){
-            title.innerHTML = "Text Changed";
-        });
-
-        // Difference between textContent and innerHTML
-        // textContent will only change the text of the element, while innerHTML will change the text and also the HTML structure
-        // of the element. 
-        // For example, if you use innerHTML to change the text of an element, it will also remove any child elements that 
-        // were inside that element. 
-        // On the other hand, textContent will only change the text and will not affect any child elements.
+        const ul = document.getElementById('list');
     </script>
 </html>
 
