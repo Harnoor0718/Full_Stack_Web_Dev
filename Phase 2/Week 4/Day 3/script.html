@@ -6,10 +6,34 @@
         <title>Event Delegation</title>
     </head>
 <body>
-    <ul id="list">
-    </ul>
+    <form id="addForm">
+        <input id="newItem" placeholder="New Task">
+        <button type="submit">Add</button>
+    </form>
+    <ul id="list"></ul>
 </body>
 <script>
     const ul = document.getElementById("list");
+    const form = document.getElementById("addForm");
+    const input = document.getElementById("newItem");
+
+    // This code takes the text entered by the user,
+    // creates a new list item containing that text and a Delete button, adds it to the to-do list, and then clears the input box.
+    form.addEventListener("submit", (e) =>{
+        e.preventDefault(); // prevent page from reloading
+        if(!input.value.trim()) return; // if the user hasn't entered any meaningful text, do nothing
+        const li = document.createElement("li");
+        li.innerHTML = `${input.value} <button> Delete </button>`;
+        ul.appendChild(li);
+        input.value = "";
+    })
+
+    // event delegation : one listener handles delete clicks for All items(separate delete for all each item)
+    ul.addEventListener("click", (e) =>{
+        if(e.target.tagName === "BUTTON"){
+            e.target.parentElement.remove();
+        }
+    });
 </script>
 </html>
+
