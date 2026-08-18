@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>To Do List</title>
+    </head>
+
+<body>
+    <form id="addForm">
+        <input id="newItem" placeholder="New Task">
+        <button type="submit"> Add </button>
+    </form>
+    <ul id="list"> </ul>
+</body>
+
+<script>
+    const ul = document.getElementById("list");
+    const form = document.getElementById("addForm");
+    const input = document.getElementById("newItem");
+
+    let todos = JSON.parse(localStorage.getItem("todos") || "[]");
+    // "Get the saved todos from localStorage. 
+    // If there are none, start with an empty array, and convert the saved data back into a JavaScript array."
+
+    function save(){
+        localStorage.setItem("todos", JSON.stringify(todos));
+    }
+
+    function render(){
+        ul.innerHTML = "";
+        todos.forEach((todo, i) =>{
+            const li = document.createElement("li");
+            li.textContent = todo.text;
+            li.style.textDecoration = todo.done ? "line-through" : "none";
+
+            
+        })
+    }
+</script>
+
+</html>
+    
