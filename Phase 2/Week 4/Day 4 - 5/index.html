@@ -1,43 +1,120 @@
-<!DOCTYPE html>
+s<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>To Do List</title>
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List</title>
+  </head>
 
-<body>
+  <body>
     <form id="addForm">
-        <input id="newItem" placeholder="New Task">
-        <button type="submit"> Add </button>
+      <input id="newItem" placeholder="New Task" />
+      <button type="submit">Add</button>
     </form>
-    <ul id="list"> </ul>
-</body>
+    <ul id="list"></ul>
+  </body>
 
-<script>
+  <script>
     const ul = document.getElementById("list");
     const form = document.getElementById("addForm");
     const input = document.getElementById("newItem");
 
     let todos = JSON.parse(localStorage.getItem("todos") || "[]");
-    // "Get the saved todos from localStorage. 
+    // "Get the saved todos from localStorage.
     // If there are none, start with an empty array, and convert the saved data back into a JavaScript array."
 
-    function save(){
-        localStorage.setItem("todos", JSON.stringify(todos));
+    function save() {
+      localStorage.setItem("todos", JSON.stringify(todos));
     }
 
-    function render(){
-        ul.innerHTML = "";
-        todos.forEach((todo, i) =>{
-            const li = document.createElement("li");
-            li.textContent = todo.text;
-            li.style.textDecoration = todo.done ? "line-through" : "none";
+    function render() {
+      ul.innerHTML = "";
+      todos.forEach((todo, i) => {
+        const li = document.createElement("li");
+        li.textContent = todo.text;
+        li.style.textDecoration = todo.done ? "line-through" : "none";
 
-            
-        })
+        li.addEventListener("click", () => {
+          todos[i].done = !todos[i].done;
+          save();
+          render();
+        });
+
+        const delBtn = document.createElement("button");
+        delBtn.textContent = "Delete";
+        delBtn.addEventListener("click", (e) => {
+          e.stopPropogation();
+          todos.splice(i, 1);
+          save();
+          render();
+        });
+
+        li.appendChild(delBtn);
+        ul.appendChild(li);
+      });
     }
-</script>
+    const ul = document.getElementById("list"); // Get todo list
+    const form = document.getElementById("addForm"); // Get form
+    const input = document.getElementById("newItem"); // Get input
 
+    // Load todos from localStorage, or use empty array
+    let todos = JSON.parse(localStorage.getItem("todos") || "[]");
+
+    // Save todos to localStorage
+    function save() {
+      localStorage.setItem("todos", JSON.stringify(todos));
+    }
+
+    // Display todos on the page
+    function render() {
+      ul.innerHTML = ""; // Clear existing list
+
+      todos.forEach((todo, i) => {
+        const li = document.createElement("li"); // Create list item
+        li.textContent = todo.text; // Add todo text
+
+        // Add/remove line-through based on completion
+        li.style.textDecoration = todo.done ? "line-through" : "none";
+
+        // Toggle completed status when todo is clicked
+        li.addEventListener("click", () => {
+          todos[i].done = !todos[i].done;
+          save();
+          render();
+        });
+
+        // Create Delete button
+        const delBtn = document.createElement("button");
+        delBtn.textContent = "Delete";
+
+        // Delete todo
+        delBtn.addEventListener("click", (e) => {
+          e.stopPropagation(); // Don't trigger li click
+          todos.splice(i, 1); // Remove todo
+          save();
+          render();
+        });
+
+        li.appendChild(delBtn); // Add button to li
+        ul.appendChild(li); // Add li to ul
+      });
+    }
+
+    // Add new todo
+    form.addEventListener("submit", (e) => {
+      e.preventDefault(); // Prevent page refresh
+
+      const text = input.value.trim();
+      if (!text) return; // Ignore empty input
+
+      todos.push({ text, done: false }); // Add todo
+      save();
+      render();
+
+      input.value = ""; // Clear input
+    });
+
+    // Show saved todos when page loads
+    render();
+  </script>
 </html>
-    
